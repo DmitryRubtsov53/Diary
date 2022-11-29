@@ -1,20 +1,18 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Scanner;
 
 public class Yearly extends Task {
 
-
-    public Yearly(String taskName, String descript, String type, String periodicity) {
-        super(taskName, descript, type, periodicity);
+    Scanner scanner = new Scanner(System.in);
+    public Yearly(String taskName, String descript, String type, LocalDateTime dataActivity, String periodicity) {
+        super(taskName, descript, type, dataActivity, periodicity);
     }
-//    @Override
-//    public boolean isTaskForTomorrow(LocalDate localDate) {
-//              return this.dataActivity.toLocalDate().equals(localDate)
-//                  || this.dataActivity.toLocalDate().plusYears(1).equals(localDate);
-//    }
-
     @Override
-    public void periodicity() {
-
+    public boolean isTaskForDate(LocalDate localDate) {
+        return dataActivity.toLocalDate().equals(localDate)              // без this работает так же !?
+                || (dataActivity.toLocalDate().isBefore(localDate) &&
+                dataActivity.toLocalDate().plusYears(localDate.getYear() -
+                        dataActivity.toLocalDate().getYear()).equals(localDate));
     }
 }

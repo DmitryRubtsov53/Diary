@@ -1,51 +1,56 @@
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
         System.out.println(
- "_______________________________ Курсовая работа № 2. ЕЖЕДНЕВНИК _______________________________");
-        System.out.println();
+                "________________________ Курсовая работа № 2. __________________________");
 
-            try (Scanner scanner = new Scanner(System.in)) {
-                label:
-                while (true) {
-                    printMenu();
-                    System.out.print("Выберите пункт меню: ");
-                    if (scanner.hasNextInt()) {
-                        int menu = scanner.nextInt();
-                        switch (menu) {
-                            case 1:
-                                inputTask(scanner);
-                                break;
-                            case 2:
-                                // todo: обрабатываем пункт меню 2
-                                break;
-                            case 3:
-                                // todo: обрабатываем пункт меню 3
-                                break;
-                            case 0:
-                                break label;
-                        }
-                    } else {
-                        scanner.next();
-                        System.out.println("Выберите пункт меню из списка!");
+        HashMap<Integer, Task> taskMaps = new HashMap<>();
+//  **********************************************************************************
+        try (Scanner scanner = new Scanner(System.in)) {
+            label:
+            while (true) {
+                Service.printMenu();
+                System.out.print("Выберите задачу и введите № пункта меню: ");
+                if (scanner.hasNextInt()) {
+                    int menu = scanner.nextInt();
+                    switch (menu) {
+                        case 1:   // Ввод задачи пользователем
+                            taskMaps.put(taskMaps.size(),Service.inputTask());
+                            break;
+                        case 2:   // Удаление задачи пользователем
+                            taskMaps.remove(Service.removeTask(scanner));
+                            printMap(taskMaps);
+                            break;
+                        case 3:   // Получение списка задач пользователем на определённую дату
+                            LocalDate LD = Service.toGetDateTasks();
+                            for (HashMap.Entry<Integer, Task> pair: taskMaps.entrySet()) {
+                                if (pair.getValue().isTaskForDate(LD))
+                                    System.out.println(pair.getKey() + ": " + pair.getValue());
+                            }
+                            break;
+                        case 4:   // Показать все активные задачи Еженедельника
+                            printMap(taskMaps);
+                            break;
+                        case 0:
+                            break label;
                     }
+                } else {
+                    scanner.next();
+                    System.out.println("Выберите задачу и введите № пункта меню: ");
                 }
             }
+        }
+
     } // main -----------------------------------------------------------------
 
-        private static void inputTask(Scanner scanner) {
-            System.out.print("Введите название задачи: ");
-            String taskName = scanner.next();
-            // todo
+    public static void printMap(HashMap<Integer, Task> taskMaps) {
+        System.out.println("\n" + "Список активных задач Ежедневника: ");
+        for (HashMap.Entry<Integer, Task> pair: taskMaps.entrySet()) {
+            System.out.println("id_" + pair.getKey() + ": " + pair.getValue());
         }
-
-        private static void printMenu() {
-            System.out.println("1. Добавить задачу" + "\n"
-                            + "2. Удалить задачу" + "\n"
-                            + "3. Получить задачу на указанный день" + "\n"
-                            + "0. Выход");
-
-        }
-
+    }
 } // Class

@@ -1,4 +1,4 @@
-# Курсовая работа 2-го курса. Java Core. Ежедневник.
+# Ежедневник. Курсовая работа 2-го курса. Java Core.
 <li><a href="https://docs.google.com/document/d/1PsiapNCkWX6GFFRjBlgRV3HwbG3qfGb7B6zq8gOhtQE/edit?usp=sharing">Техническое задание Курсовой</a></li>
 
 Это сервис по управлению задачами по типу ежедневника.

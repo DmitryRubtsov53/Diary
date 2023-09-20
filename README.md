@@ -1,5 +1,5 @@
-# Ежедневник. Курсовая работа 2-го курса. Java Core.
-<li><a href="https://docs.google.com/document/d/1PsiapNCkWX6GFFRjBlgRV3HwbG3qfGb7B6zq8gOhtQE/edit?usp=sharing">Техническое задание Курсовой</a></li>
+# Ежедневник. К2. Java Core.
+<li><a href="https://docs.google.com/document/d/1PsiapNCkWX6GFFRjBlgRV3HwbG3qfGb7B6zq8gOhtQE/edit?usp=sharing">Техническое задание</a></li>
 
 Это сервис по управлению задачами по типу ежедневника.
 В ежедневник можно заносить задачи, можно удалять их, можно получать список задач на предстоящий день или на конкретную дату.
